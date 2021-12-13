@@ -7,8 +7,9 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "User",
     required: true,
+
   },
-  caption: {
+  text: {
     type: String,
     required: [true, "Please enter the caption"],
     trim: true,

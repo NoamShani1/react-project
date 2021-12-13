@@ -16,12 +16,16 @@ export default function Login() {
 	const handleEmail = e => setEmail(e.target.value)
 	const handlePassword = e => setPassword(e.target.value)
 
+	
+
 	const handleSubmit = e => {
 		e.preventDefault()
 		// axios.post('/addTwiada')
 		const requestBody = { email, password }
 
+	
 		axios.post('/auth/login', requestBody)
+		
 			.then(response => {
 				// redirect -> projects
 				// navigate('/login')

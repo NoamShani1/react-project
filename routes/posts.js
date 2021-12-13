@@ -20,14 +20,15 @@ router.get('/', (req, res, next) => {
 // route to create a post 
 
 router.post('/new', (req, res, next) => {
-    console.log('HERE!!!UEUEUEUEUE')
+    // console.log('HERE!!!UEUEUEUEUE')
     console.log(req.body)
-	const { user, caption, likesCount, retweetCount, commentsCount, createdAt } = req.body
-	Post.create({ user, caption, likesCount, retweetCount, commentsCount, createdAt })
-		.then(post => {
-			res.status(201).json(post)
-		})
-		.catch(err => next(err))
+	console.log(req.payload)
+	// const { text } = req.body
+	// Post.create({ text })
+	// 	.then(post => {
+	// 		res.status(201).json(post)
+	// 	})
+	// 	.catch(err => next(err))
 });
 
 // route to give post by user id  - get with id

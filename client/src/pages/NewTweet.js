@@ -21,14 +21,18 @@ const { loginUser } = useContext(AuthContext)
 const handleTweet = e => setNewTweet(e.target.value)
 
 
+
+
 const handleSubmit = e => {
     e.preventDefault()
     // axios.post('/addTwiada')
     const requestBody = { newTweet }
 console.log(requestBody)
 
-    
-    axios.post('/posts/new', requestBody)
+const storedToken = localStorage.getItem('authToken')
+console.log('hjejejejj',storedToken)
+
+    axios.post('/posts/new', { headers: { Authorization: `Bearer ${storedToken}` }}, requestBody)
         .then(response => {
             // redirect -> projects
             // navigate('/login')
@@ -51,7 +55,7 @@ console.log(requestBody)
        <h1>Create tweet</h1>
 			<form onSubmit={handleSubmit}>
 				<label>Whats new?  </label>
-				<input type="text" name="caption" value={newTweet} onChange={handleTweet} />
+				<input type="text" name="text" value={newTweet} onChange={handleTweet} />
 				<button type="submit"> Post </button>
 			</form>
             

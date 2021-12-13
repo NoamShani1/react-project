@@ -20,23 +20,24 @@ import { useState, useEffect } from 'react'
 
 export default function Home() {
 
+	
 
 	const [tweets, setTweets] = useState([])
 
 	const [refresh, setRefresh] = useState(false)
 
-	const handle = () => {
-		setRefresh(true)
-	}
-
+	
 	useEffect(() => {
+	const storedToken = localStorage.getItem('authToken')
+	console.log('hellop!!', storedToken)
+	
 
-		axios.get('/posts')
+		axios.get('/posts', { headers: { Authorization: `Bearer ${storedToken}` }})
 			.then(response => {
 				setTweets(response.data)
 			})
 
-	}, [refresh])
+	}, [])
 
 
 
@@ -64,7 +65,7 @@ export default function Home() {
 	// map through each element of the tweet 
 	return (
 		<div>
-			<button onClick={handle}>Refresh</button>
+		
 			<h1>Your Feed</h1>
 			{allTweets}
 		</div>
