@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import Tweet from '../components/Tweet'
 
 
 //import axios 
@@ -24,7 +25,8 @@ export default function Home() {
 
 	const [tweets, setTweets] = useState([])
 
-	const [refresh, setRefresh] = useState(false)
+
+
 
 	
 	useEffect(() => {
@@ -34,6 +36,7 @@ export default function Home() {
 
 		axios.get('/posts', { headers: { Authorization: `Bearer ${storedToken}` }})
 			.then(response => {
+				console.log(response.data)
 				setTweets(response.data)
 			})
 
@@ -43,16 +46,19 @@ export default function Home() {
 
 	const allTweets = tweets.map(tweet => {
 		return (
-			<>
-				<h1>{tweet.user.name}</h1>
-				<h2>{tweet.caption}</h2>
-				<p> likes {tweet.likesCount}</p>
-				<p>{tweet.retweets}</p>
-				<p> retweets {tweet.retweetCount}</p>
-				<p>{tweet.comments}</p>
-				<p>comments {tweet.commentsCount}</p>
-				<p>{tweet.createdAt}</p>
-			</>
+			<div>
+			
+				<Tweet name= {tweet.user.name}
+				 text= {tweet.text} 
+				 likes= {tweet.likesCount} 
+				 retweet= {tweet.retweets}
+				 retweetCount = {tweet.retweetCount}
+				 comments = {tweet.comments}
+				 commentsCount = {tweet.commentsCount}
+				 createdAt = {tweet.createdAt}
+				 />
+
+			</div>
 		)
 
 	})

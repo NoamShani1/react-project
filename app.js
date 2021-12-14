@@ -20,7 +20,7 @@ require("./config")(app);
 // Contrary to the views version, all routes are controlled from the routes/index.js
 
 const posts = require("./routes/posts");
-app.use("/posts", isAuthenticated, posts);
+app.use("/posts", posts);
 
 // isAuthenticated,
 

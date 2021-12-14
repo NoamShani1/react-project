@@ -1,7 +1,7 @@
 
 const router = require('express').Router()
-const Post = require ('../models/Post')
-const Comment = require ('../models/Comment');
+const Post = require('../models/Post')
+const Comment = require('../models/Comment');
 
 
 //todo: 
@@ -10,8 +10,10 @@ const Comment = require ('../models/Comment');
 router.get('/', (req, res, next) => {
 
 	Post.find()
-    .populate('user')
-    .then(posts => {
+		.populate('user')
+		.populate('comments')
+		.then(posts => {
+			console.log("POSTS", posts)
 			res.status(200).json(posts)
 		})
 		.catch(err => next(err))
@@ -20,15 +22,12 @@ router.get('/', (req, res, next) => {
 // route to create a post 
 
 router.post('/new', (req, res, next) => {
-    // console.log('HERE!!!UEUEUEUEUE')
-    console.log(req.body)
-	console.log(req.payload)
-	// const { text } = req.body
-	// Post.create({ text })
-	// 	.then(post => {
-	// 		res.status(201).json(post)
-	// 	})
-	// 	.catch(err => next(err))
+	const { user, text } = req.body
+	Post.create({ user, text })
+		.then(post => {
+			res.status(201).json(post)
+		})
+		.catch(err => next(err))
 });
 
 // route to give post by user id  - get with id
@@ -48,14 +47,14 @@ router.get('/post/:id', (req, res, next) => {
 });
 
 router.put('/post/:id', (req, res, next) => {
-	const { user, caption, likes, retweetCount, comments, createdAt } = req.body
+	const { user, text, likes, retweetCount, comments, createdAt } = req.body
 	Post.findByIdAndUpdate(req.params.id, {
 		user,
-		caption,
-        likes,
-        retweetCount,
-        comments,
-        createdAt
+		text,
+		likes,
+		retweetCount,
+		comments,
+		createdAt
 	}, { new: true })
 		.then(updatedPost => {
 			res.status(200).json(updatedPost)
@@ -84,7 +83,6 @@ router.delete('/post/:id', (req, res, next) => {
 router.get('/comments', (req, res, next) => {
 	Comment.find()
 		.then(comment => {
-            console.log()
 			res.status(200).json(comment)
 		})
 		.catch(err => next(err))
@@ -93,10 +91,13 @@ router.get('/comments', (req, res, next) => {
 // route to create a comment 
 
 router.post('/newcomment', (req, res, next) => {
-    console.log(req.body)
+	console.log(req.body)
 	const { user, post, text, createdAt } = req.body
 	Comment.create({ user, post, text, createdAt })
 		.then(comment => {
+			Post.findByIdAndUpdate(post, { $push: { comments: comment._id } }, { new: true })
+				.then((post) => console.log("UPDATE", post))
+				.catch(err => next(err))
 			res.status(201).json(comment)
 		})
 		.catch(err => next(err))
@@ -123,8 +124,8 @@ router.put('/comment/:id', (req, res, next) => {
 	Comment.findByIdAndUpdate(req.params.id, {
 		user,
 		post,
-        text,
-        createdAt,
+		text,
+		createdAt,
 	}, { new: true })
 		.then(updatedComment => {
 			res.status(200).json(updatedComment)
