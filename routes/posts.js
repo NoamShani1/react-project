@@ -64,7 +64,7 @@ router.put('/post/:id', (req, res, next) => {
 
 // Route to delte post - post 
 
-router.delete('/post/:id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
 	Post.findByIdAndDelete(req.params.id)
 		.then(() => {
 			res.status(200).json({ message: 'Post has been deleted' })

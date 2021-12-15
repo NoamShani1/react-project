@@ -9,16 +9,22 @@ export default function Navbar() {
 
 	return (
 		<nav>
-			<Link to='/'>
-				<button>Feed</button>
-			</Link>
+
 			{isLoggedIn ?
 				(
 					<>
-					<Link to='/post/new'>
+						<Link to='/post/new'>
 							<button>create a tweet</button>
 						</Link>
 						<button onClick={logoutUser}>Logout</button>
+
+						<Link to='/profile'>
+							<button>Profile</button>
+						</Link>
+
+						<Link to='/'>
+							<button>Feed</button>
+						</Link>
 					</>
 				) : (
 					<>
@@ -29,7 +35,8 @@ export default function Navbar() {
 							<button>Login</button>
 						</Link>
 
-	
+
+
 					</>
 				)}
 		</nav>

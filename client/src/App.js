@@ -6,6 +6,7 @@ import Login from './pages/Login'
 //import JWTest from './JWTest';
 import Navbar from './components/Navbar';
 import NewTweet from './pages/NewTweet';
+import Profile from './Profile/Profile';
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
         <Route path='/post/new' element={<NewTweet />} />
+        <Route path='/profile' element={<Profile />} />
+        
+
 
       </Routes>
     </div>

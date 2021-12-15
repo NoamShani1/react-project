@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.button {
+background-color: transparent;
+  border: none;
+  font-size: 100px;
+  cursor: pointer;
+  outline: none;
+  height: 2vh;
+
+ 
+}
+
+.heart{
+
+    transition: .1s ease;
+    height: 1vh;
+  
+}

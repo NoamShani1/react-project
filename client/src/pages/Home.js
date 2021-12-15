@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import Tweet from '../components/Tweet'
 
 
+  
+
+  
 //import axios 
 // axios requests to the routes in the backend 
 
@@ -18,20 +21,18 @@ import Tweet from '../components/Tweet'
 // 
 
 
-
 export default function Home() {
 
-	
+
 
 	const [tweets, setTweets] = useState([])
-
+	const [refresh, setRefresh] = useState(false)
 
 
 
 	
 	useEffect(() => {
 	const storedToken = localStorage.getItem('authToken')
-	console.log('hellop!!', storedToken)
 	
 
 		axios.get('/posts', { headers: { Authorization: `Bearer ${storedToken}` }})
@@ -40,7 +41,7 @@ export default function Home() {
 				setTweets(response.data)
 			})
 
-	}, [])
+	}, [refresh])
 
 
 
@@ -48,7 +49,9 @@ export default function Home() {
 		return (
 			<div>
 			
-				<Tweet name= {tweet.user.name}
+				<Tweet 
+				id= {tweet._id}
+				name= {tweet.user.name}
 				 text= {tweet.text} 
 				 likes= {tweet.likesCount} 
 				 retweet= {tweet.retweets}
@@ -56,14 +59,14 @@ export default function Home() {
 				 comments = {tweet.comments}
 				 commentsCount = {tweet.commentsCount}
 				 createdAt = {tweet.createdAt}
+				 refresh={refresh}
+				 setRefresh={setRefresh}
 				 />
 
 			</div>
 		)
 
 	})
-
-
 
 
 
