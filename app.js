@@ -13,9 +13,6 @@ const { isAuthenticated } = require('./middleware/jwt.js')
 
 const app = express();
 
-const path = require('path');
-app.use(express.static(path.join(__dirname, "/client/build")));
-
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
@@ -38,7 +35,13 @@ app.use("/user", isAuthenticated, user);
 
 
 
+
 // include middleWare
+
+
+const path = require('path');
+app.use(express.static(path.join(__dirname, "/client/build")));
+
 
 app.use((req, res) => {
     // If no routes match, send them the React HTML.
