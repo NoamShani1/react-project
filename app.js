@@ -20,7 +20,7 @@ require("./config")(app);
 // Contrary to the views version, all routes are controlled from the routes/index.js
 
 const posts = require("./routes/posts");
-app.use("/posts", posts);
+app.use("/posts", isAuthenticated, posts);
 
 // isAuthenticated,
 
@@ -28,7 +28,15 @@ const auth = require("./routes/auth");
 app.use("/auth", auth);
 
 
+// route user, get by id, find by id 
+
+const user = require("./routes/user");
+app.use("/user", isAuthenticated, user);
+
+
+
 // include middleWare
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

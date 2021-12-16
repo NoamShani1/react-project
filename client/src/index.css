@@ -11,3 +11,52 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.tweet {
+  margin: 0 auto;
+  min-width: 480px;
+  max-width: 640px;
+  min-height: 80px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  display: flex;
+  font-size: 1.1rem;
+  line-height: 18px;
+}
+
+.tweet-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.top{
+  display: flex;
+  line-height: 1.4rem;
+}
+
+.actions {
+  padding: 5px 5px;
+  width: 560px;
+
+  display: flex;
+  justify-content: space-between;
+  color: #536471;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.name {
+
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+}

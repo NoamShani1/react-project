@@ -11,7 +11,7 @@ export default function Comments({ comments }) {
 
     return (
         <div>
-            {comments.map(comment => {
+            {comments.map(comment =>  {
                 <h1> {comment.text}</h1>
             })}
         </div>
