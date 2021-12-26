@@ -75,7 +75,8 @@ export default function Home() {
 	return (
 		<div>
 		
-			<h1>Your Feed</h1>
+		
+	<img  classname='twitter 'src='/icons/twitter.svg' alt='More' />
 			{allTweets}
 		</div>
 	)

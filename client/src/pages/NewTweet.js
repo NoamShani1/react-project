@@ -44,8 +44,6 @@ export default function NewTweet() {
 
 
 
-
-
     return (
 
         <div>

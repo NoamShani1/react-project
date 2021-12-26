@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #00acee;
 }
 
 code {
@@ -24,6 +25,8 @@ code {
   display: flex;
   font-size: 1.1rem;
   line-height: 18px;
+  background-color: #243447;
+  border-color: white;
 }
 
 .tweet-content {
@@ -59,4 +62,21 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 
+}
+
+
+.delete {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.red  {
+  color: red
+}
+
+.twitter{
+  width: 18px;
+  height: 18px;
 }

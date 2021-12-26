@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Comments from "./Comments";
 import LikeButton from "./LikeButton";
+import AddComment from "./AddComment";
 import axios from "axios";
 import { AuthContext } from '../context/auth'
 import { Link } from 'react-router-dom'
@@ -96,35 +97,47 @@ export default function Tweet({
                     <div className='name'>
                         <h4>{name} <span>username </span></h4>
 
+
                         <div className='icon'>
-                        <img src='/icons/more.svg' alt='More' />
+                            <img src='/icons/more.svg' alt='More' />
                         </div>
-                       
+
                     </div>
 
                     <p>{text}</p>
                 </div>
-                
+
                 <div className='actions'>
                     <div className='action-icon'>
-                   
+
                         <button onClick={handleCommentState} className='icon-button'> <img src='/icons/comment.svg' alt='Comment' /></button>
                         <p>Comments</p>
+                        <AddComment/>
                     </div>
 
-                    <div className='action-icon'>
-                    <span> <img src='/icons/repost.svg' alt='More' /></span>                   
-                         <p>Text</p>
-                    </div>
 
-                    <div className='action-icon'>
-                        <span>Icon</span>
-                        <p>Text</p>
+                        <div className='action-icon'>
+                            <span> <img src='/icons/repost.svg' alt='More' /></span>
+                            <p>Retweet</p>
+                        </div>
+
+                        <div className='action-icon'>
+                            <p>  <LikeButton /> </p>
+                            <span>likes</span>
+
+                        </div>
+
+
+                        <div className='action-icon'>
+                            <button onClick={() => deleteProject(id)} className='delete'><img src='/icons/trash.svg' alt='trash' />  </button>
+                            <p>delete tweet</p>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
-    );
+            );
 }
 
 // display grid for content 
