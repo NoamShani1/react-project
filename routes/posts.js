@@ -92,8 +92,8 @@ router.get('/comments', (req, res, next) => {
 
 router.post('/newcomment', (req, res, next) => {
 	console.log(req.body)
-	const { user, post, text, createdAt } = req.body
-	Comment.create({ user, post, text, createdAt })
+	const { user, text, post } = req.body
+	Comment.create({ user, post, text })
 		.then(comment => {
 			Post.findByIdAndUpdate(post, { $push: { comments: comment._id } }, { new: true })
 				.then((post) => console.log("UPDATE", post))

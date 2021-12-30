@@ -37,7 +37,7 @@ export default function Home() {
 
 		axios.get('/posts', { headers: { Authorization: `Bearer ${storedToken}` }})
 			.then(response => {
-				console.log(response.data)
+			
 				setTweets(response.data)
 			})
 

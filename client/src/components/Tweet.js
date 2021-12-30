@@ -111,10 +111,18 @@ export default function Tweet({
                     <div className='action-icon'>
 
                         <button onClick={handleCommentState} className='icon-button'> <img src='/icons/comment.svg' alt='Comment' /></button>
-                        <p>Comments</p>
-                        <AddComment/>
+                        <p>Comments </p>
+                        <Comments comments={comments} />
+                        <AddComment postId={id} showComments={showComments} setShowComments={setShowComments} refresh={refresh} setRefresh={setRefresh}/>
                     </div>
 
+                    {showComments && (
+                        <div>
+                            {comments.map((comment) => {
+                                return <p> {comment.text}</p>;
+                            })}
+                        </div>
+                    )}
 
                         <div className='action-icon'>
                             <span> <img src='/icons/repost.svg' alt='More' /></span>

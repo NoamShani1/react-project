@@ -7,7 +7,8 @@ import { useContext } from 'react'
 import { AuthContext } from '../context/auth'
 
 
-export default function AddComment() {
+
+export default function AddComment({postId, refresh, setRefresh, showComments,setShowComments}) {
 
     const [newComment, setNewComment] = useState('')
     const [errorMessage, setErrorMessage] = useState(undefined)
@@ -18,12 +19,11 @@ export default function AddComment() {
 
 
     const { user } = useContext(AuthContext)
-    console.log(user)
 
     const handleSubmit = e => {
         e.preventDefault()
         // axios.post('/addTwiada')
-        const requestBody = { text: newComment, user: user._id }
+        const requestBody = { text: newComment, user: user._id, post: postId}
 
         const storedToken = localStorage.getItem('authToken')
 
@@ -31,6 +31,8 @@ export default function AddComment() {
             .then(response => {
                 // redirect -> projects
                 navigate('/')
+                setRefresh(!refresh)
+                setShowComments(true)
             })
             .catch(err => {
                 const errorDescrition = err.response.data.message
